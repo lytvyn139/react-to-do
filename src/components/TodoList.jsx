@@ -2,13 +2,13 @@
 import React from 'react';
 import Todo from './Todo';
 
-const TodoList = ({ todos, setTodos }) => {
+const TodoList = ({ todos, setTodos, filteredTodos }) => {
     console.log(todos);
     return (
         <div className="todo-container">
             <ul className="todo-list">
                 {/* render list */}
-                {todos.map(todo => (
+                {filteredTodos.map(todo => (
                     <Todo
                         key={todo.id}
                         text={todo.text}
@@ -18,7 +18,6 @@ const TodoList = ({ todos, setTodos }) => {
                     />
                 ))}
             </ul>
-
         </div>
     );
 }
