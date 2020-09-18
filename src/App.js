@@ -10,11 +10,16 @@ function App() {
   const [status, setStatus] = useState("all");
   const [filteredTodos, setfilteredTodos] = useState([]);
 
+
+  useEffect(() => {
+    getLocalTodos();
+  }, []);
+  
   useEffect(() => {
     filterHandler();
+    saveLocalTodos();
   }, [todos, status]); //[] it's gonna run only once when component got rendered
   //running every time todos value is changing
-
 
   const filterHandler = () => {
     switch(status) {
@@ -29,6 +34,19 @@ function App() {
         break;
     }
   };
+
+  const saveLocalTodos = () => {
+      localStorage.setItem('todos', JSON.stringify(todos));
+  };
+
+  const getLocalTodos = () => {
+  if (localStorage.getItem('todos') === null) {
+    localStorage.setItem('todos', JSON.stringify([]));
+  } else {
+    let todoLocal = JSON.parse(localStorage.getItem('todos'));
+    setTodos(todoLocal);
+  }
+}
 
   return (
     <div className="App">
