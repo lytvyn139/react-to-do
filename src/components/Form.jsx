@@ -8,9 +8,13 @@ const Form = ({ inputText, todos, setTodos, setInputText }) => {
     const submitTodoHandler = (e) => {
         e.preventDefault(); //prevent page from refreshing after the click
         setTodos([
-            ...todos, { text: inputText, completed: false, id: Math.random() * 1000 }
+            //if we have any todos in the list ... pass it, {new one }
+            ...todos, { 
+                        text: inputText, 
+                        completed: false, 
+                        id: Math.random() * 1000 },
         ]);
-        setInputText('');
+        setInputText(''); //clear the input =set state to ""
     }
     return (
         <form>
